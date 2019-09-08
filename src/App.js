@@ -7,7 +7,8 @@ import {
   NavItem
 } from 'reactstrap';
 import {
-  Route
+  Route,
+  NavLink
 } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import routes from './routes/routes';
@@ -36,17 +37,27 @@ class App extends Component {
         <NavbarToggler right onClick={this.toggleNavBar} />
           <a className="navbar-brand" href={"home"}>Blog</a>
           <Collapse isOpen={isNavbarOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <NavLink className="ml-auto" navbar>
               <NavItem>
-                <a className="nav-link" activeClassName="active" href={"home"}>Home</a>
+                <NavLink 
+                  className="nav-link" 
+                  activeClassName="active"
+                  to={routes.home}
+                  >Home</NavLink>
               </NavItem>
               <NavItem>
-                <a className="nav-link" activeClassName="active" href={"home"}>Authors</a>
+                <NavLink 
+                  className="nav-link" 
+                  activeClassName="active" 
+                  to={routes.authors}>Authors</NavLink>
               </NavItem>
               <NavItem>
-                <a className="nav-link" activeClassName="active" href={"home"}>New Post</a>
+                <NavLink 
+                  className="nav-link" 
+                  activeClassName="active" 
+                  to={routes.newPost}>New Post</NavLink>
               </NavItem>
-            </Nav>
+            </NavLink>
           </Collapse>
         </Navbar>
 
