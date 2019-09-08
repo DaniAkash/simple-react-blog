@@ -6,7 +6,13 @@ import {
   Nav, 
   NavItem
 } from 'reactstrap';
+import {
+  Route
+} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
+import routes from './routes/routes';
+import Home from './pages/Home/Home';
+import Authors from './pages/Authors/Authors';
 
 class App extends Component {
 
@@ -43,6 +49,9 @@ class App extends Component {
             </Nav>
           </Collapse>
         </Navbar>
+
+        <Route path={routes.home} component={Home}/>
+        <Route path={routes.authors} component={Authors}/>
       </div>
     )
   }
