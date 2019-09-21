@@ -32,6 +32,7 @@ class Home extends Component {
                     return (
                         <PostSummary
                             id={post.id}
+                            key={postIndex}
                             title={post.title}
                             content={post.content}
                             author={post.author}

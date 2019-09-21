@@ -9,7 +9,7 @@ const PostSummary = ({
     datetime,
 }) => {
     return (
-        <div>
+        <div className={`post-container container`}>
             <h3>{title}</h3>
             <p>{author}</p>
             <p>{content}</p>
