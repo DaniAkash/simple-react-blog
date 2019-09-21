@@ -38,7 +38,7 @@ class App extends Component {
         <NavbarToggler right onClick={this.toggleNavBar} />
           <a className="navbar-brand" href={"home"}>Blog</a>
           <Collapse isOpen={isNavbarOpen} navbar>
-            <NavLink className="ml-auto" navbar>
+            <Nav className="ml-auto" navbar>
               <NavItem>
                 <NavLink 
                   className="nav-link" 
@@ -58,7 +58,7 @@ class App extends Component {
                   activeClassName="active" 
                   to={routes.newPost}>New Post</NavLink>
               </NavItem>
-            </NavLink>
+            </Nav>
           </Collapse>
         </Navbar>
 
