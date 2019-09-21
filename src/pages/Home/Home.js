@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import fetchData from '../../services/fetchData';
 import { GET_POSTS_API } from '../../constants/serverUrls';
 import PostSummary from '../../CommonComponents/PostSummary';
+import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
 
 class Home extends Component {
 
@@ -28,17 +29,23 @@ class Home extends Component {
 
         return (
             <div>
-                {posts.map((post, postIndex) => {
-                    return (
-                        <PostSummary
-                            id={post.id}
-                            key={postIndex}
-                            title={post.title}
-                            content={post.content}
-                            author={post.author}
-                        />
-                    )
-                })}
+                {
+                    posts.length
+                    ?
+                        posts.map((post, postIndex) => {
+                            return (
+                                <PostSummary
+                                    id={post.id}
+                                    key={postIndex}
+                                    title={post.title}
+                                    content={post.content}
+                                    author={post.author}
+                                />
+                            )
+                        })
+                    :
+                        <LoadingIndicator/>
+                }
             </div>
         );
     }
