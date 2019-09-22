@@ -4,7 +4,7 @@ import { GET_POSTS_API } from '../../constants/serverUrls';
 import PostSummary from '../../CommonComponents/PostSummary';
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
 import ErrorScreen from '../ErrorScreen/ErrorScreen';
-import ErrorBoundaryV1 from '../../HigherOrderComponents/ErrorBoundaryV1';
+import ErrorBoundaryV2 from '../../HigherOrderComponents/ErrorBoundaryV2';
 
 class Home extends Component {
 
@@ -29,29 +29,27 @@ class Home extends Component {
         const { posts } = this.state;
 
         return (
-            <ErrorBoundaryV1>
-                <div>
-                    {
-                        posts.length
-                        ?
-                            posts.map((post, postIndex) => {
-                                return (
-                                    <PostSummary
-                                        id={post.id}
-                                        key={postIndex}
-                                        title={post.title}
-                                        content={post.content}
-                                        author={post.author}
-                                    />
-                                )
-                            })
-                        :
-                            <LoadingIndicator/>
-                    }
-                </div>
-            </ErrorBoundaryV1>
+            <div>
+                {
+                    posts.length
+                    ?
+                        posts.map((post, postIndex) => {
+                            return (
+                                <PostSummary
+                                    id={post.id}
+                                    key={postIndex}
+                                    title={post.title}
+                                    content={post.content}
+                                    author={post.author}
+                                />
+                            )
+                        })
+                    :
+                        <LoadingIndicator/>
+                }
+            </div>
         );
     }
 }
 
-export default Home;
+export default ErrorBoundaryV2(Home);
