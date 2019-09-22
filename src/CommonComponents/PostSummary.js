@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import routes from '../routes/routes';
+import ErrorScreen from '../pages/ErrorScreen/ErrorScreen';
 
 const PostSummary = ({
     id,
@@ -10,17 +11,21 @@ const PostSummary = ({
     title,
     datetime,
 }) => {
-    return (
-        <div className={`post-container container`}>
-            <h3>{title}</h3>
-            <p>{author}</p>
-            <p>{content}</p>
-            <NavLink 
-                className={`btn btn-primary`} 
-                to={routes.post.replace(":id", id)} 
-            >Read More</NavLink>
-        </div>
-    )
+    try {
+        return (
+            <div className={`post-container container`}>
+                <h3>{title}</h3>
+                <p>{author}</p>
+                <p>{content}</p>
+                <NavLink 
+                    className={`btn btn-primary`} 
+                    to={routes.post.replace(":id", id)} 
+                >Read More</NavLink>
+            </div>
+        )
+    } catch(e) {
+        return <ErrorScreen text={"Error while loading the post..."}/>
+    }
 };
 
 PostSummary.propTypes = {

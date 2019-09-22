@@ -3,11 +3,13 @@ import fetchData from '../../services/fetchData';
 import { GET_POSTS_API } from '../../constants/serverUrls';
 import PostSummary from '../../CommonComponents/PostSummary';
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
+import ErrorScreen from '../ErrorScreen/ErrorScreen';
 
 class Home extends Component {
 
     state = {
-        posts: []
+        posts: [],
+        hasError: false,
     };
 
     componentDidMount() {
@@ -23,9 +25,18 @@ class Home extends Component {
         }
     };
 
-    render() {
+    componentDidCatch(error) {
+        if(error) {
+            this.setState({
+                hasError: true
+            });
+        }
+    }
 
-        const { posts } = this.state;
+    render() {
+        const { posts, hasError } = this.state;
+
+        if(hasError) return <ErrorScreen/>;
 
         return (
             <div>
