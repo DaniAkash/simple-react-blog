@@ -8,7 +8,8 @@ import {
 } from 'reactstrap';
 import {
   Route,
-  NavLink
+  NavLink,
+  withRouter
 } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import routes from './routes/routes';
@@ -27,6 +28,13 @@ class App extends Component {
       isNavbarOpen: !this.state.isNavbarOpen
     });
   };
+
+  componentDidMount() {
+    const { history, location } = this.props;
+    if(location.pathname === "/") {
+      history.push(routes.home);
+    }
+  }
 
   render() {
 
@@ -70,4 +78,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
