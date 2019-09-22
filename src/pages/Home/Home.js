@@ -4,12 +4,12 @@ import { GET_POSTS_API } from '../../constants/serverUrls';
 import PostSummary from '../../CommonComponents/PostSummary';
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
 import ErrorScreen from '../ErrorScreen/ErrorScreen';
+import ErrorBoundaryV1 from '../../HigherOrderComponents/ErrorBoundaryV1';
 
 class Home extends Component {
 
     state = {
         posts: [],
-        hasError: false,
     };
 
     componentDidMount() {
@@ -25,39 +25,31 @@ class Home extends Component {
         }
     };
 
-    componentDidCatch(error) {
-        if(error) {
-            this.setState({
-                hasError: true
-            });
-        }
-    }
-
     render() {
-        const { posts, hasError } = this.state;
-
-        if(hasError) return <ErrorScreen/>;
+        const { posts } = this.state;
 
         return (
-            <div>
-                {
-                    posts.length
-                    ?
-                        posts.map((post, postIndex) => {
-                            return (
-                                <PostSummary
-                                    id={post.id}
-                                    key={postIndex}
-                                    title={post.title}
-                                    content={post.content}
-                                    author={post.author}
-                                />
-                            )
-                        })
-                    :
-                        <LoadingIndicator/>
-                }
-            </div>
+            <ErrorBoundaryV1>
+                <div>
+                    {
+                        posts.length
+                        ?
+                            posts.map((post, postIndex) => {
+                                return (
+                                    <PostSummary
+                                        id={post.id}
+                                        key={postIndex}
+                                        title={post.title}
+                                        content={post.content}
+                                        author={post.author}
+                                    />
+                                )
+                            })
+                        :
+                            <LoadingIndicator/>
+                    }
+                </div>
+            </ErrorBoundaryV1>
         );
     }
 }
