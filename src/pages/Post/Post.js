@@ -3,6 +3,8 @@ import fetchData from '../../services/fetchData';
 import { GET_POST_BY_ID_API } from '../../constants/serverUrls';
 import PostSummary from '../../CommonComponents/PostSummary';
 import LoadingIndicator from '../../CommonComponents/LoadingIndicator';
+import ErrorBoundaryV2 from '../../HigherOrderComponents/ErrorBoundaryV2';
+import { withRouter } from 'react-router-dom';
 
 class Post extends Component {
   
@@ -81,4 +83,4 @@ class Post extends Component {
 
 }
 
-export default Post;
+export default ErrorBoundaryV2(withRouter(Post));
