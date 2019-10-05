@@ -13,6 +13,7 @@ class Post extends Component {
     datetime: "",
     author: ""
   };
+  _timeoutReference;
 
   componentDidMount() {
     const { match = {} } = this.props;
@@ -32,7 +33,23 @@ class Post extends Component {
       .catch(error => {
         console.error(error);
       })
+
+    this.startPopUpTimer();
   }
+
+  componentWillUnmount() {
+    this.clearPopUpTimer();
+  }
+
+  startPopUpTimer = () => {
+    this._timeoutReference = setTimeout(() => {
+      alert("Subscribe to our news letter!");
+    }, 10000);
+  };
+
+  clearPopUpTimer = () => {
+    clearTimeout(this._timeoutReference);
+  };
 
   render() {
     const {
