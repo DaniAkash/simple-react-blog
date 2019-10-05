@@ -19,11 +19,12 @@ const ErrorBoundaryV2 = ChildComponent => {
 
             render() {
 
+                const { props } = this;
                 const { hasError } = this.state;
 
                 if(hasError) return <ErrorScreen/>
 
-                return <ChildComponent/>;
+                return <ChildComponent {...props}/>;
             }
     }
 };

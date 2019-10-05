@@ -83,4 +83,4 @@ class Post extends Component {
 
 }
 
-export default ErrorBoundaryV2(withRouter(Post));
+export default withRouter(ErrorBoundaryV2(Post));
