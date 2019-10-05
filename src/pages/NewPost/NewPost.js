@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PostInputField from "../../CommonComponents/PostInputField";
 import PostTextArea from "../../CommonComponents/PostTextArea";
 import ErrorBoundaryV2 from "../../HigherOrderComponents/ErrorBoundaryV2";
@@ -14,6 +14,21 @@ const NewPost = () => {
     const [content, setContent] = useState("");
     const [noOfLines, setNoOfLines] = useState(0);
     const [isLoading, setLoading] = useState(false);
+
+    useEffect(() => {
+
+        /**
+         * Did mount & Did update
+         */
+        console.log("effect called");
+
+        return () => {
+            /**
+             * Will unmount
+             */
+            console.log("Unmounted");
+        }
+    }, [authorName]); // Will call useEffect only if these [states] change
 
     const onSubmit = () => {
         setLoading(true);
