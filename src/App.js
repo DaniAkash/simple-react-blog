@@ -16,6 +16,7 @@ import routes from './routes/routes';
 import Home from './pages/Home/Home';
 import Authors from './pages/Authors/Authors';
 import Post from './pages/Post/Post';
+import NewPost from './pages/NewPost/NewPost';
 
 class App extends Component {
 
@@ -73,6 +74,7 @@ class App extends Component {
         <Route path={routes.home} component={Home}/>
         <Route path={routes.post} component={Post}/>
         <Route path={routes.authors} component={Authors}/>
+        <Route path={routes.newPost} component={NewPost}/>
       </div>
     )
   }
