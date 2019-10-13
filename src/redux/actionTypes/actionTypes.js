@@ -1,0 +1,1 @@
+export const ACTION_GET_POSTS = "ACTION_GET_POSTS";
