@@ -28,26 +28,32 @@ class Home extends Component {
     // };
 
     render() {
-        const { posts } = this.props;
+        const { posts, isLoading, hasError } = this.props;
 
         return (
             <div>
                 {
-                    posts.length
-                    ?
-                        posts.map((post, postIndex) => {
-                            return (
-                                <PostSummary
-                                    id={post.id}
-                                    key={postIndex}
-                                    title={post.title}
-                                    content={post.content}
-                                    author={post.author}
-                                />
-                            )
-                        })
-                    :
-                        <LoadingIndicator/>
+                    isLoading
+                        ?<LoadingIndicator/>
+                        :null
+                }
+                {
+                    hasError
+                        ?<ErrorScreen/>
+                        :null
+                }
+                {
+                    posts.map((post, postIndex) => {
+                        return (
+                            <PostSummary
+                                id={post.id}
+                                key={postIndex}
+                                title={post.title}
+                                content={post.content}
+                                author={post.author}
+                            />
+                        )
+                    })
                 }
             </div>
         );
@@ -57,6 +63,8 @@ class Home extends Component {
 const mapStateToProps = state => { // Sending data from store into react component
     return {
         posts: state.posts,
+        isLoading: state.ajaxCalls.getAllPosts.loading,
+        hasError: state.ajaxCalls.getAllPosts.hasError
     };
 };
 
