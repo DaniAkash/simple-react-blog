@@ -7,8 +7,6 @@ import ErrorScreen from '../ErrorScreen/ErrorScreen';
 import ErrorBoundaryV2 from '../../HigherOrderComponents/ErrorBoundaryV2';
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getAllPosts } from '../../redux/actions/postActions';
 
 class Home extends Component {
 
@@ -16,9 +14,9 @@ class Home extends Component {
     //     posts: [],
     // };
 
-    componentDidMount() {
-        this.props.loadPostData();
-    }
+    // componentDidMount() {
+    //     this.loadPostData();
+    // }
 
     // loadPostData = async () => {
     //     try {
@@ -62,16 +60,7 @@ const mapStateToProps = state => { // Sending data from store into react compone
     };
 };
 
-const mapDispatchToProps = dispatch => { // Sending the actions we created into the react component
-    return {
-        loadPostData: bindActionCreators(getAllPosts, dispatch)
-    };
-};
-
-const connectHOC = connect(
-    mapStateToProps, 
-    mapDispatchToProps // optional
-);
+const connectHOC = connect(mapStateToProps);
 
 export default connectHOC(ErrorBoundaryV2(Home));
 

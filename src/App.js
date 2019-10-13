@@ -18,6 +18,10 @@ import Authors from './pages/Authors/Authors';
 import Post from './pages/Post/Post';
 import NewPost from './pages/NewPost/NewPost';
 
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getAllPosts } from './redux/actions/postActions';
+
 class App extends Component {
 
   state = {
@@ -31,7 +35,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const { history, location } = this.props;
+    const { history, location, loadPostData } = this.props;
+    loadPostData();
     if(location.pathname === "/") {
       history.push(routes.home);
     }
@@ -80,4 +85,14 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapStateToProps = () => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    loadPostData: bindActionCreators(getAllPosts, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
