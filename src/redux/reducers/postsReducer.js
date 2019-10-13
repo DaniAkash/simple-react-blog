@@ -5,7 +5,7 @@ import { ACTION_GET_POSTS } from "../actionTypes/actionTypes";
  * state - previous state 
  * action - value returned by your actions
  */
-const postsReducer = (state = initialState.posts, action = {}) => {
+const postsReducer = (state = initialState.posts, action) => {
 
     switch(action.type) {
 
